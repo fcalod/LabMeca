@@ -1,0 +1,41 @@
+const int pinR1 = 13;
+const int pinA1 = 12;
+const int pinV1 = 11;
+
+const int pinR2 = 10;
+const int pinA2 = 9;
+const int pinV2 = 8;
+
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(pinR1, OUTPUT);
+  pinMode(pinA1, OUTPUT);
+  pinMode(pinV1, OUTPUT);
+
+  pinMode(pinR2, OUTPUT);
+  pinMode(pinA2, OUTPUT);
+  pinMode(pinV2, OUTPUT);
+}
+
+void loop() {
+  /*
+  digitalWrite(pinR1,HIGH);
+  digitalWrite(pinV2,HIGH);
+  delay(5000);
+  digitalWrite(pinV2, LOW);
+  digitalWrite(pinA2, HIGH);
+  delay(1000);
+  digitalWrite(pinR1, LOW);
+  digitalWrite(pinA2, LOW);
+  digitalWrite(pinV1,HIGH);
+  digitalWrite(pinR2,HIGH);
+  delay(5000);
+  digitalWrite(pinV1,LOW);
+  digitalWrite(pinA1,HIGH);
+  delay(1000);
+  */
+
+  digitalWrite(pinV2,HIGH);
+
+}
