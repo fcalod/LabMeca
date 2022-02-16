@@ -1,0 +1,33 @@
+const int pinEnt = 12;
+const int pinSal = 13;
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(pinSal, OUTPUT);
+  pinMode(pinEnt, INPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  int boton = digitalRead(pinEnt);
+  
+  if(boton == HIGH) {
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+    digitalWrite(pinSal, HIGH);
+    delay(500);                       // wait for a second
+    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+    digitalWrite(pinSal, LOW);
+    delay(500);                       // wait for a second
+    Serial.print("sí");
+  } else {
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+    digitalWrite(pinSal, HIGH);
+    delay(1000);                       // wait for a second
+    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+    digitalWrite(pinSal, LOW);
+    delay(1000);                       // wait for a second
+  }
+  
+}
