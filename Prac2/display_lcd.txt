@@ -1,8 +1,12 @@
 #include <LiquidCrystal.h> // include the library code:
+
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // initialize the interface pins
+bool scroll = true;
+
 void setup() {
-lcd.begin(16, 2); // set up the LCD's number of columns and rows:
+	lcd.begin(16, 2); // set up the LCD's number of columns and rows:
 }
+
 void loop() {
   /*
   lcd.setCursor(1, 0);
@@ -14,17 +18,18 @@ void loop() {
   lcd.clear();
   delay(250);
   */
-  
-  //Texto arbitrario
-  char str[] = "Avestruz";
-  char str2[8];
-  lcd.setCursor(1, 0);
-  
-  for(int i = 0; i < 8; i++) {
-    str2[i] = str[1];
-    lcd.print(str2);
-    lcd.scrollDisplayLeft();
-    delay(500);
-  }
-  
+	
+	// Text arbitrario
+	// Hace que el texto se detenga cuando esté centrado
+	if(scroll) {
+		for(int i = 0; i < 11; i++) {
+		  //Texto arbitrario
+		  lcd.setCursor(15, 0); // Comienza a escribir por la derecha
+		  lcd.print("Avestruz");
+			lcd.scrollDisplayLeft(); // Mueve el texto hacia la izquierda
+		  delay(250);
+		}
+
+		scroll = false;
+	}
 }
