@@ -1,0 +1,53 @@
+Practica2 4.4
+
+#include <Servo.h>
+Servo myservo; // create servo object to control a servo
+#include <LiquidCrystal.h> // include the library code:
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // initialize the interface pins
+int analogPin = A0;
+int val = 0; // variable to read the value from the analog pin
+
+void setup() {
+  lcd.begin(16, 2); // set up the LCD's number of columns and rows:
+  myservo.attach(9); // attaches the servo on pin 9 to the servo object
+}
+void loop() {
+  val = analogRead(analogPin);
+  Serial.print ("Conversion analogico-digital: ");
+  Serial.print(val);  
+  double servo = map(val, 0, 1023, 0, 180);
+  double volt = val * 5  / 1023.0;
+  Serial.print("\n Valor del servomotor ");
+  Serial.print(servo);
+  Serial.println();
+  myservo.write(servo);
+
+  
+  lcd.setCursor(1, 0);
+  lcd.print(volt);
+  lcd.setCursor(15, 0);
+  lcd.print("V");
+
+  lcd.setCursor(1, 1);
+  lcd.print(servo);
+  lcd.setCursor(15, 1);
+  lcd.print("°");
+  
+  delay(100);
+  
+  
+    /*
+  for (int i = 0; i <= 180; i++)
+  {
+    myservo.write(i); // sets the servo position according to the scaled value
+    delay(20); // waits for the servo to get there
+    }
+  for (int i = 180; i >= 0; i--)
+  {
+    myservo.write(i); // sets the servo position according to the scaled value
+    delay(20); // waits for the servo to get there
+   }
+     */
+
+}
