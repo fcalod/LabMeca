@@ -1,8 +1,10 @@
+#include <LiquidCrystal.h> // include the library code:
+#include <math.h>
+
 int analogPinx = A0;
 int analogPiny = A1;
 int analogPinz = A2;
 
-#include <LiquidCrystal.h> // include the library code:
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // initialize the interface pins
 
 void setup() {
@@ -14,26 +16,38 @@ void setup() {
   pinMode(analogPinz, INPUT);
 }
 void loop() {
- int xPosition = analogRead(analogPinx);
- int yPosition = analogRead(analogPiny);
- int zPosition = analogRead(analogPinz);
+  int xPos = analogRead(analogPinx);
+ 	int yPos = analogRead(analogPiny);
+ 	int zPos = analogRead(analogPinz);
 
+	/*
   Serial.println("x: ");
-  Serial.println(xPosition);
-//  xval = map(xPosition, 335,,0,
+  Serial.println(xPos);
   Serial.println("y: ");
-  Serial.println(yPosition);
+  Serial.println(yPos);
   Serial.println("z: ");
-  Serial.println(zPosition); 
+  Serial.println(zPos);
+  Serial.println();
+  //Serial.println(sqrt(xPos^2 + yPos^2 + zPos^2));
+  //Serial.println("ang: ");
+  //Serial.print(yPos / sqrt(xPos^2 + zPos^2));
+	//Serial.print(" rad\n");
+  */
+  
   Serial.println();
   delay(1000);
 
-  double xVal = map(xPosition,0,1023, -1,1);
-  double yVal = map(yPosition,0,1023, -1,1);
-  double zVal = map(zPosition,0,1023, -1,1);
-
-
-  //x: 340, y: 340, z: 413
-
-
+	//rango original: [264, 400]
+  double xVal = (xPos - 332.0) / 68.0;
+	double yVal = (yPos - 332.0) / 68.0;
+	double zVal = (zPos - 332.0) / 68.0;
+  
+	Serial.println("x: ");
+  Serial.println(xVal);
+  Serial.println("y: ");
+  Serial.println(yVal);
+  Serial.println("z: ");
+  Serial.println(zVal);
+  Serial.println();
+	
 }
