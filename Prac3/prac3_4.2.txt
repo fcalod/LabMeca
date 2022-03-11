@@ -1,0 +1,23 @@
+int analogPin = A7;
+#include <LiquidCrystal.h> // include the library code:
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // initialize the interface pins
+
+void setup() {
+  // put your setup code here, to run once:
+ Serial.begin(9600); 
+ lcd.begin(16, 2); // set up the LCD's number of columns and rows:
+  pinMode(analogPin, INPUT);
+}
+
+void loop() {
+  int val = analogRead(analogPin);
+  Serial.print(val);
+  delay(1000);
+
+  double volt = val * 5  / 1023.0;
+
+  lcd.setCursor(1, 0);
+  
+  
+  lcd.print(volt);
+}

@@ -1,0 +1,39 @@
+int analogPinx = A0;
+int analogPiny = A1;
+int analogPinz = A2;
+
+#include <LiquidCrystal.h> // include the library code:
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // initialize the interface pins
+
+void setup() {
+  Serial.begin(9600); 
+  lcd.begin(16, 2); // set up the LCD's number of columns and rows:
+  
+  pinMode(analogPinx, INPUT);
+  pinMode(analogPiny, INPUT);
+  pinMode(analogPinz, INPUT);
+}
+void loop() {
+ int xPosition = analogRead(analogPinx);
+ int yPosition = analogRead(analogPiny);
+ int zPosition = analogRead(analogPinz);
+
+  Serial.println("x: ");
+  Serial.println(xPosition);
+//  xval = map(xPosition, 335,,0,
+  Serial.println("y: ");
+  Serial.println(yPosition);
+  Serial.println("z: ");
+  Serial.println(zPosition); 
+  Serial.println();
+  delay(1000);
+
+  double xVal = map(xPosition,0,1023, -1,1);
+  double yVal = map(yPosition,0,1023, -1,1);
+  double zVal = map(zPosition,0,1023, -1,1);
+
+
+  //x: 340, y: 340, z: 413
+
+
+}
