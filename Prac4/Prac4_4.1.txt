@@ -1,0 +1,64 @@
+int pinB1 = 4;
+int pinB2 = 5;
+int led1 = 2;
+int led2 = 3;
+int EN = 13;
+int A_1 = 12;
+int A_2 = 11;
+int analogPinx = A0;
+int analogPiny = A1;
+
+void setup() {
+  Serial.begin(9600); // setup serial
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(pinB1, INPUT); 
+  pinMode(pinB2, INPUT);
+  pinMode(analogPinx, INPUT);
+  pinMode(analogPiny, INPUT);
+}
+
+void loop() {
+  int boton1 = digitalRead(pinB1);
+  int boton2 = digitalRead(pinB2);
+  
+  int xPos = analogRead(analogPinx);
+  int yPos = analogRead(analogPiny);
+  
+  Serial.println("botón 1");
+  Serial.println(boton1);
+  Serial.println("botón 2");
+  Serial.println(boton2);
+  Serial.println(); 
+  
+  if(boton1 == HIGH && boton2 == HIGH) {
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, HIGH);
+    
+    digitalWrite(EN, HIGH);
+    digitalWrite(A_1, HIGH);
+    digitalWrite(A_2, HIGH);
+  } else if(boton1 == LOW && boton2 == HIGH) {
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, LOW);
+    
+    digitalWrite(EN, HIGH);
+    digitalWrite(A_1, LOW);
+    digitalWrite(A_2, HIGH);
+  } else if(boton1 == HIGH && boton2 == LOW) {
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, HIGH);
+    
+    digitalWrite(EN, HIGH);
+    digitalWrite(A_1, HIGH);
+    digitalWrite(A_2, LOW);
+  } else {
+    digitalWrite(led1, LOW);
+    digitalWrite(led2, LOW);
+    digitalWrite(EN, LOW);
+  }
+
+  
+  
+  
+}

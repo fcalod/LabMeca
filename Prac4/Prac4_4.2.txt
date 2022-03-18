@@ -1,0 +1,57 @@
+int EN = 13;
+int A_1 = 12;
+int A_2 = 11;
+int analogPinx = A0;
+int analogPiny = A1;
+
+void setup() {
+  Serial.begin(9600); // setup serial
+  pinMode(analogPinx, INPUT);
+  pinMode(analogPiny, INPUT);
+}
+
+void loop() {
+  int x = analogRead(analogPinx);
+
+  double vel = abs(x - 501) / 2.0;
+
+  if(vel > 255)
+    vel = 255;
+
+  analogWrite(EN, vel);
+
+  if(x < 500) {
+    //digitalWrite(EN, HIGH);
+    digitalWrite(A_1, HIGH);
+    digitalWrite(A_2, LOW);
+  } else if (x >= 500 && x <= 502) {
+    digitalWrite(EN, LOW);
+    digitalWrite(A_1, LOW);
+    digitalWrite(A_2, LOW);
+  } else {
+    digitalWrite(A_1, LOW);
+    digitalWrite(A_2, HIGH);
+  }
+  
+  /*
+  if(x < 511)
+    x_norm = (x - 511) / 511.0;
+  else if(x == 511)
+    x_norm = 0;
+  else
+    x_norm = (x - 511) / 512.0;
+  
+  if(y < 511)
+    y_norm = (y - 511) / 511.0;
+  else if(y == 511)
+  else
+    y_norm = (y - 511) / 512.0;
+  */
+  
+  Serial.println("X: ");
+  Serial.println(x);
+  Serial.println(vel);
+  Serial.println();
+  delay(100);
+
+}
